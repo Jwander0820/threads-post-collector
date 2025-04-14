@@ -1,5 +1,7 @@
 import datetime
+
 from utils import iso_to_unix
+
 
 class ThreadsSyncManager:
     def __init__(self, api_client, db_handler, backup_handler=None):

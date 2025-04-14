@@ -1,5 +1,6 @@
-import json
 import datetime
+import json
+
 
 class JSONBackup:
     @staticmethod

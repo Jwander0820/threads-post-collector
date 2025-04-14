@@ -59,6 +59,7 @@ if __name__ == "__main__":
     ACCESS_TOKEN = get_access_token()  # 預設讀取 config.json
 
     api_client = ThreadsAPIClient(ACCESS_TOKEN)
+    api_client.update_token_if_needed()  # 檢查Token是否過期，若過期則更新
     backup = JSONBackup()  # 若不需要備份可設為 None
     with SQLiteDB("threads_post_backup.db") as db:
         sync_manager = ThreadsSyncManager(api_client, db, backup)

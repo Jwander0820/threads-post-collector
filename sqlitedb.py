@@ -1,9 +1,10 @@
-import sqlite3
+import csv
 import datetime
 import json  # 確保有引入 json 模組
+import sqlite3
+
 from utils import iso_to_unix
-import csv
-import os
+
 
 class SQLiteDB:
     def __init__(self, db_path="threads.db"):
@@ -118,7 +119,8 @@ class SQLiteDB:
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
         # 將 children 轉換為 JSON 字串（如果有資料）
-        children_json = json.dumps(normalized_post.get('children')) if normalized_post.get('children') is not None else None
+        children_json = json.dumps(normalized_post.get('children')) if normalized_post.get(
+            'children') is not None else None
         try:
             self.cur.execute(sql, (
                 normalized_post.get('id'),
