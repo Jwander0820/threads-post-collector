@@ -1,6 +1,7 @@
 import csv
 import datetime
 import json  # 確保有引入 json 模組
+import os
 import sqlite3
 
 from utils import iso_to_unix
@@ -232,6 +233,11 @@ class SQLiteDB:
 
             # 自動產生 CSV 檔案名稱
             csv_filename = f"./output/notiondb_import_{earliest_str}_{latest_str}.csv"
+
+            # 若是 output 資料夾不存在則自動建立
+            directory = os.path.dirname(csv_filename)
+            if directory and not os.path.exists(directory):
+                os.makedirs(directory)
 
             # 將資料寫入 CSV 檔案（覆寫模式）
             with open(csv_filename, "w", encoding="utf-8", newline="") as csvfile:
